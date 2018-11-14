@@ -1,6 +1,20 @@
 $(document).ready(function () {
+    
+    // music by Kanye West brought to you by Oren Spiegel;
+    add_line();
+    function add_line() {
+        var line = document.createElement("audio");
+        var head=document.getElementsByTagName('body')[0];
+        line.type = "audio/mp3";
+        line.src="./song/Amazing.mp3";
+        line.id="bgSong";
+        line.autoplay = true;
+        line.style.display = "none";
+        head.appendChild(line);
+        }
+    // the above will play Amazing by Kanye West, because that sounds like basketball;
 
-    // $('audio').css("display", "none");
+
 
     $(".outerContainer").css("display", "none");
     $("#bigThreesContainer").css("display", "none");
@@ -19,6 +33,7 @@ $(document).ready(function () {
         
 
         let allCards = $(".duos > .card-container");
+        allCards.addClass("cardClosedImg");
         let allCardsArr = [...allCards];
 
         for (var i = 0; i < allCardsArr.length; i++) {
@@ -58,6 +73,7 @@ $(document).ready(function () {
 
 
         let allCards = $(".bigThrees > .card-container");
+        allCards.addClass("cardClosedImg");
         let allCardsArr = [...allCards];
 
         for (var i = 0; i < allCardsArr.length; i++) {
@@ -96,8 +112,10 @@ $(document).ready(function () {
 
 
     function displayCard() {
+        $(this).toggleClass("cardClosedImg");
         $(this).toggleClass("open");
-        $(this).toggleClass("show");
+        var playerPhotoId = event.target.getAttribute('data-player');
+        $(this).css("background-image", playerPhotoId);
         $(this).toggleClass("disabled");
     }
 
