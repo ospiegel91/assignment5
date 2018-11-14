@@ -1,0 +1,204 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Latest compiled and minified CSS  -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+        crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="./js/main.js"></script>
+    <title>Assignment5</title>
+    <link href="https://fonts.googleapis.com/css?family=Anton" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="./css/style.css">
+</head>
+
+<body>
+    <audio src="./song/Amazing.mp3" autoplay>
+        <p>If you are reading this, it is because your browser does not support the audio element. </p>
+        <embed src="./song/Amazing.mp3" width="180" height="90" hidden="true" />
+    </audio>
+
+    <div class="loading-page-outer-container">
+        <div class="loading-page-inner-container">
+            <div class="menu">
+                <div class="inner-menu-container">
+                    <h2>NBA greatest <b>duos</b> <br>card memory game</h2>
+                    <p>match two player cards which belong to the same team</p>
+                    <button class="menuButton duosStart">Start a new duos game now!</button>
+                </div>
+                <div class="inner-menu-container">
+                    <h2>NBA greatest <b>big-threes</b><br>card memory game</h2>
+                    <p>match three player cards which belong to the same team</p>
+                    <button class="menuButton ThreesStart">Start a new big-threes game now!</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="outerContainer">
+        <div class="newGame" style="display: none">
+            <button>new game</button>
+        </div>
+        <div class="headingContainer">
+            <div class="logoContainerLeft">
+            </div>
+            <div class="text">
+                <h1>NBA card memory game</h1>
+                <p>Instructions here... many words about how to play this complicated game</p>
+            </div>
+            <div class="logoContainerRight">
+            </div>
+        </div>
+        <div class="score-box-container">
+            <div class="wrongGuessesContainer">
+                number of wrong guesses: 7
+            </div>
+            <div class="cards-remaining">
+                cards remainning: 30
+            </div>
+        </div>
+        <div id="bigThreesContainer" class="container-fluid innerContainer">
+            <div class="row rowContainer bigThrees row1BT">
+                <div class="col-xs-4 col-md-2 card-container" data="lakers">
+                </div>
+                <div class="col-xs-4 col-md-2 card-container" data="lakers">
+                </div>
+                <div class="col-xs-4 col-md-2 card-container" data="lakers">
+                </div>
+                <div class="col-xs-4 col-md-2 card-container" data="lakers">
+                </div>
+                <div class="col-xs-4 col-md-2 card-container" data="lakers">
+                </div>
+                <div class="col-xs-4 col-md-2 card-container" data="lakers">
+                </div>
+            </div>
+            <div class="row rowContainer bigThrees row2BT">
+                <div class="col-xs-4 col-md-2 card-container" data="mavs">
+                </div>
+                <div class="col-xs-4 col-md-2 card-container" data="mavs">
+                </div>
+                <div class="col-xs-4 col-md-2 card-container" data="mavs">
+                </div>
+                <div class="col-xs-4 col-md-2 card-container" data="mavs">
+                </div>
+                <div class="col-xs-4 col-md-2 card-container" data="mavs">
+                </div>
+                <div class="col-xs-4 col-md-2 card-container" data="mavs">
+                </div>
+            </div>
+            <div class="row rowContainer bigThrees row3BT">
+                <div class="col-xs-4 col-md-2 card-container" data="heat">
+                </div>
+                <div class="col-xs-4 col-md-2 card-container" data="heat">
+                </div>
+                <div class="col-xs-4 col-md-2 card-container" data="heat">
+                </div>
+                <div class="col-xs-4 col-md-2 card-container" data="heat">
+                </div>
+                <div class="col-xs-4 col-md-2 card-container" data="heat">
+                </div>
+                <div class="col-xs-4 col-md-2 card-container" data="heat">
+                </div>
+            </div>
+            <div class="row rowContainer bigThrees row4BT">
+                <div class="col-xs-4 col-md-2 card-container" data="spurs">
+                </div>
+                <div class="col-xs-4 col-md-2 card-container" data="spurs">
+                </div>
+                <div class="col-xs-4 col-md-2 card-container" data="spurs">
+                </div>
+                <div class="col-xs-4 col-md-2 card-container" data="spurs">
+                </div>
+                <div class="col-xs-4 col-md-2 card-container" data="spurs">
+                </div>
+                <div class="col-xs-4 col-md-2 card-container" data="spurs">
+                </div>
+            </div>
+            <div class="row rowContainer bigThrees row5BT">
+                <div class="col-xs-4 col-md-2 card-container" data="celtics">
+                </div>
+                <div class="col-xs-4 col-md-2 card-container" data="celtics">
+                </div>
+                <div class="col-xs-4 col-md-2 card-container" data="celtics">
+                </div>
+                <div class="col-xs-4 col-md-2 card-container" data="celtics">
+                </div>
+                <div class="col-xs-4 col-md-2 card-container" data="celtics">
+                </div>
+                <div class="col-xs-4 col-md-2 card-container" data="celtics">
+                </div>
+            </div>
+        </div>
+        <div id="duosContainer" class="container-fluid innerContainer">
+            <div class="row rowContainer duos row1duo">
+                <div class="col-xs-4 col-md-2 card-container">
+                </div>
+                <div class="col-xs-4 col-md-2 card-container">
+                </div>
+                <div class="col-xs-4 col-md-2 card-container">
+                </div>
+                <div class="col-xs-4 col-md-2 card-container">
+                </div>
+                <div class="col-xs-4 col-md-2 card-container">
+                </div>
+                <div class="col-xs-4 col-md-2 card-container">
+                </div>
+            </div>
+            <div class="row rowContainer duos row2duo">
+                <div class="col-xs-4 col-md-2 card-container">
+                </div>
+                <div class="col-xs-4 col-md-2 card-container">
+                </div>
+                <div class="col-xs-4 col-md-2 card-container">
+                </div>
+                <div class="col-xs-4 col-md-2 card-container">
+                </div>
+                <div class="col-xs-4 col-md-2 card-container">
+                </div>
+                <div class="col-xs-4 col-md-2 card-container">
+                </div>
+            </div>
+            <div class="row rowContainer duos row3duo">
+                <div class="col-xs-4 col-md-2 card-container">
+                </div>
+                <div class="col-xs-4 col-md-2 card-container">
+                </div>
+                <div class="col-xs-4 col-md-2 card-container">
+                </div>
+                <div class="col-xs-4 col-md-2 card-container">
+                </div>
+                <div class="col-xs-4 col-md-2 card-container">
+                </div>
+                <div class="col-xs-4 col-md-2 card-container">
+                </div>
+            </div>
+            <div class="row rowContainer duos row4duo">
+                <div class="col-xs-4 col-md-2 card-container">
+                </div>
+                <div class="col-xs-4 col-md-2 card-container">
+                </div>
+                <div class="col-xs-4 col-md-2 card-container">
+                </div>
+                <div class="col-xs-4 col-md-2 card-container">
+                </div>
+                <div class="col-xs-4 col-md-2 card-container">
+                </div>
+                <div class="col-xs-4 col-md-2 card-container">
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https:///maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="./js/main.js"></script> -->
+</body>
+
+</html>

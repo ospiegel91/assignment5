@@ -1,0 +1,305 @@
+.loading-page-outer-container{
+    height: 680px;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loading-page-inner-container{
+    height: 70%;
+    width: 600px;
+    background-image: url(https://ae01.alicdn.com/kf/HTB1YncQbi6guuRkSmLyq6AulFXaK/DIY-frame-We-Love-This-Game-Michael-Jordan-LeBron-Basketball-stars-Poster-Fabric-Silk-Poster-Posters.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15%;
+}
+
+.menu{
+    height: 60%;
+    width: 60%;
+    background-color: rgba(255, 255, 255, 0.8);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    border-radius: 15%;
+}
+.inner-menu-container{
+    height: 94%;
+    width: 94%;
+    padding-top: 3%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.inner-menu-container h2{
+    padding: 0;
+    margin: 0;
+    font-size: 2.1em;
+    text-align: center;
+    margin-bottom: 0.5%;
+    font-family: 'Anton', sans-serif;
+    font-weight: 300;
+}
+
+.inner-menu-container p{
+    margin-top: 2%;
+    margin-bottom: 1%;
+    text-align: center;
+    font-family: 'Anton', sans-serif;
+    font-size: 1em;
+}
+
+.menuButton{
+    padding-top: 0.8%;
+    width: 65%;
+    height: 20%;
+    border-radius: 15%;
+    font-family: 'Anton', sans-serif;
+    background-color: black;
+    color: white;
+    font-size: 0.8em;
+    
+}
+
+.menuButton:hover{
+    border: white thick solid;
+}
+
+
+.outerContainer{
+    height: 680px;
+    background-color: cornflowerblue;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+.headingContainer{
+    height: 12%;
+    background-color: burlywood;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    width: 90%;
+
+}
+.logoContainer{
+    width: 25%;
+}
+.headingContainer h1{
+    font-size: 1.8em;
+    margin:0;
+    padding: 0;
+}
+.headingContainer p{
+    margin-top: 1%;
+    font-size: 1.2em;
+}
+.innerContainer{
+    width: 98%;
+    height: 78%;
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.rowContainer{
+    background-color: black;
+    width: 100%;
+}
+
+.bigThrees{
+    height: 20%;
+}
+.duos{
+    height: 25%;
+}
+
+.card-container{
+    background: url("../images/backOfCard.jpeg") white;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position-x: 50%;
+    height: 96%;
+    border: black solid thick;
+    margin-top: 2px;
+    
+}
+
+
+.card-container.open {
+	transform: rotateY(0);
+	background: #02b3e4;
+	cursor: default;
+	animation-name: flipInY;
+	-webkit-backface-visibility: visible !important;
+	backface-visibility: visible !important;
+	animation-duration: .75s;
+}
+
+.card-container.show {
+	font-size: 33px;
+}
+
+.card-container.match {
+	cursor: default;
+	background: #E5F720;
+	font-size: 33px;
+	animation-name: rubberBand;
+	-webkit-backface-visibility: visible !important;
+	backface-visibility: visible !important;
+	animation-duration: .75s;
+}
+
+.card-container.unmatched {
+	animation-name: pulse;
+	-webkit-backface-visibility: visible !important;
+	backface-visibility: visible !important;
+	animation-duration: .75s;
+	background: #e2043b;
+}
+
+.card-container.disabled {
+	pointer-events: none;
+	opacity: 0.9;
+}
+
+
+
+
+
+
+
+.score-box-container{
+    height: 10%;
+    background-color: yellow;
+    width: 60%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+.wrongGuessesContainer{
+    margin-left: 3%;
+}
+
+.cards-remaining{
+    margin-right: 3%;
+}
+
+.logoContainerLeft{
+    width: 27%;
+    background-image: url(https://www.cheatsheet.com/wp-content/uploads/2015/04/Kobe-Bryant-Shaq-AFP-Getty-Images.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position-y: 10%;
+    height: 98%;
+
+}
+
+.logoContainerRight{
+    width: 27%;
+    background-image: url(http://media.masslive.com/celtics_impact/photo/9567314-large.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position-y: 5%;
+    height: 98%;
+
+}
+
+@media only screen and (max-width : 990px){
+    .card-container{
+        background-color: black;
+        height: 48%;
+    }
+    .headingContainer h1{
+        font-size: 1.5em;
+    }
+    .headingContainer p{
+        font-size: 1em;
+        margin-left: 0.2%;
+        margin-right: 0.2%;
+    }
+    
+}
+
+
+
+
+
+.flipInY {
+    -webkit-backface-visibility: visible !important;
+    backface-visibility: visible !important;
+    -webkit-animation-name: flipInY;
+    animation-name: flipInY;
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+    }
+    @-webkit-keyframes flipInY {
+    0% {
+    -webkit-transform: perspective(400px) rotate3d(0, 1, 0, 90deg);
+    transform: perspective(400px) rotate3d(0, 1, 0, 90deg);
+    -webkit-transition-timing-function: ease-in;
+    transition-timing-function: ease-in;
+    opacity: 0;
+    }
+    40% {
+    -webkit-transform: perspective(400px) rotate3d(0, 1, 0, -20deg);
+    transform: perspective(400px) rotate3d(0, 1, 0, -20deg);
+    -webkit-transition-timing-function: ease-in;
+    transition-timing-function: ease-in;
+    }
+    60% {
+    -webkit-transform: perspective(400px) rotate3d(0, 1, 0, 10deg);
+    transform: perspective(400px) rotate3d(0, 1, 0, 10deg);
+    opacity: 1;
+    }
+    80% {
+    -webkit-transform: perspective(400px) rotate3d(0, 1, 0, -5deg);
+    transform: perspective(400px) rotate3d(0, 1, 0, -5deg);
+    }
+    100% {
+    -webkit-transform: perspective(400px);
+    transform: perspective(400px);
+    }
+    }
+    @keyframes flipInY {
+    0% {
+    -webkit-transform: perspective(400px) rotate3d(0, 1, 0, 90deg);
+    transform: perspective(400px) rotate3d(0, 1, 0, 90deg);
+    -webkit-transition-timing-function: ease-in;
+    transition-timing-function: ease-in;
+    opacity: 0;
+    }
+    40% {
+    -webkit-transform: perspective(400px) rotate3d(0, 1, 0, -20deg);
+    transform: perspective(400px) rotate3d(0, 1, 0, -20deg);
+    -webkit-transition-timing-function: ease-in;
+    transition-timing-function: ease-in;
+    }
+    60% {
+    -webkit-transform: perspective(400px) rotate3d(0, 1, 0, 10deg);
+    transform: perspective(400px) rotate3d(0, 1, 0, 10deg);
+    opacity: 1;
+    }
+    80% {
+    -webkit-transform: perspective(400px) rotate3d(0, 1, 0, -5deg);
+    transform: perspective(400px) rotate3d(0, 1, 0, -5deg);
+    }
+    100% {
+    -webkit-transform: perspective(400px);
+    transform: perspective(400px);
+    }
+    } 
