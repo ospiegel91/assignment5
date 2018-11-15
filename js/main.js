@@ -36,10 +36,7 @@ $(document).ready(function () {
         allCards.addClass("cardClosedImg");
         let allCardsArr = [...allCards];
 
-        for (var i = 0; i < allCardsArr.length; i++) {
-            allCardsArr[i].addEventListener("click", displayCard);
-            allCardsArr[i].addEventListener("click", countCards);
-        };
+        
 
         const row1 = document.querySelector(".row1duo");
         const row2 = document.querySelector(".row2duo");
@@ -47,6 +44,10 @@ $(document).ready(function () {
         const row4 = document.querySelector(".row4duo");
         startGame();
         function startGame() {
+            for (var i = 0; i < allCardsArr.length; i++) {
+                allCardsArr[i].addEventListener("click", displayCard);
+                allCardsArr[i].addEventListener("click", countCards);
+            };
             var shuffledCards = shuffle(allCardsArr);
             for (var i = 0; i < shuffledCards.length / 4; i++) {
                 row1.appendChild(shuffledCards[i]);
@@ -77,9 +78,7 @@ $(document).ready(function () {
         allCards.addClass("cardClosedImg");
         let allCardsArr = [...allCards];
 
-        for (var i = 0; i < allCardsArr.length; i++) {
-            allCardsArr[i].addEventListener("click", displayCard);
-        };
+        
 
         const row1 = document.querySelector(".row1BT");
         const row2 = document.querySelector(".row2BT");
@@ -88,6 +87,11 @@ $(document).ready(function () {
         const row5 = document.querySelector(".row5BT");
         startGame();
         function startGame() {
+            for (var i = 0; i < allCardsArr.length; i++) {
+                allCardsArr[i].addEventListener("click", displayCard);
+                allCardsArr[i].addEventListener("click", countCards);
+            };
+
             var shuffledCards = shuffle(allCardsArr);
             for (var i = 0; i < shuffledCards.length / 5; i++) {
                 row1.appendChild(shuffledCards[i]);
@@ -143,21 +147,62 @@ $(document).ready(function () {
         if ($("#duosContainer").css("display") === "none") {
             max = 3
         }
-        if (openedCards >= max) {
-            checkCardsEuqal(max);
+        if (openedCards === max) {
+            checkCardsEqual(max);
+            openedCards = 0; 
+            // turnOffOn();
+
         }
 
     }
 
-    function checkCardsEuqal() {
+    function checkCardsEqual() {
         var cardsSelected = $(".disabled");
         var arr = [];
-        for (var i=0; i<cardsSelected.length;i++){
+        for (var i = 0; i < cardsSelected.length; i++) {
             var x = cardsSelected.get(i).value;
             arr.push(x);
         }
+        const allEqual = arr => arr.every(v => v === arr[0])
 
-        console.log(arr);
+        if (allEqual(arr)) {
+            console.log(arr);
+            cardsSelected.removeClass("disabled");
+            cardsSelected.addClass("goldBorder");
+            var outOfPlay = document.querySelectorAll(".goldBorder");
+            for(var i=0; i<outOfPlay.length; i++){
+                outOfPlay[i].removeEventListener("click", displayCard);
+                outOfPlay[i].removeEventListener("click", countCards);
+            }
+            var totalCards = 0;
+            if ($("#duosContainer").css("display") === "none") {
+                totalCards = 30;
+            }else{
+                totalCards= 24;
+            }
+
+            if(outOfPlay.length===totalCards){
+                setTimeout(() => {
+                    $("#victory-modal").css("display","flex");
+                }, 700);
+
+            }
+            
+
+        } else {
+            setTimeout(() => {
+                cardsSelected.removeClass("open");
+                cardsSelected.removeAttr("style");
+                cardsSelected.removeClass("disabled");
+                cardsSelected.addClass("cardClosedImg");
+            }, 2000);
+
+        }
+        
+        
+
     }
+
+
 
 });
