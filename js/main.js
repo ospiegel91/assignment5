@@ -1,17 +1,17 @@
 $(document).ready(function () {
-    
+
     // music by Kanye West brought to you by Oren Spiegel;
     add_line();
     function add_line() {
         var line = document.createElement("audio");
-        var head=document.getElementsByTagName('body')[0];
+        var head = document.getElementsByTagName('body')[0];
         line.type = "audio/mp3";
-        line.src="./song/Amazing.mp3";
-        line.id="bgSong";
+        line.src = "./song/Amazing.mp3";
+        line.id = "bgSong";
         line.autoplay = true;
         line.style.display = "none";
         head.appendChild(line);
-        }
+    }
     // the above will play Amazing by Kanye West, because that sounds like basketball;
 
 
@@ -30,7 +30,7 @@ $(document).ready(function () {
         $(".outerContainer").css("display", "flex");
         $("#duosContainer").css("display", "flex");
 
-        
+
 
         let allCards = $(".duos > .card-container");
         allCards.addClass("cardClosedImg");
@@ -38,6 +38,7 @@ $(document).ready(function () {
 
         for (var i = 0; i < allCardsArr.length; i++) {
             allCardsArr[i].addEventListener("click", displayCard);
+            allCardsArr[i].addEventListener("click", countCards);
         };
 
         const row1 = document.querySelector(".row1duo");
@@ -47,14 +48,14 @@ $(document).ready(function () {
         startGame();
         function startGame() {
             var shuffledCards = shuffle(allCardsArr);
-            for (var i = 0; i < shuffledCards.length/4; i++) {
+            for (var i = 0; i < shuffledCards.length / 4; i++) {
                 row1.appendChild(shuffledCards[i]);
             }
-            
-            for (var i = 6; i < shuffledCards.length/2; i++) {
+
+            for (var i = 6; i < shuffledCards.length / 2; i++) {
                 row2.appendChild(shuffledCards[i]);
             }
-            for (var i = 12; i < shuffledCards.length/4*3; i++) {
+            for (var i = 12; i < shuffledCards.length / 4 * 3; i++) {
                 row3.appendChild(shuffledCards[i]);
             }
             for (var i = 18; i < shuffledCards.length; i++) {
@@ -88,24 +89,24 @@ $(document).ready(function () {
         startGame();
         function startGame() {
             var shuffledCards = shuffle(allCardsArr);
-            for (var i = 0; i < shuffledCards.length/5; i++) {
+            for (var i = 0; i < shuffledCards.length / 5; i++) {
                 row1.appendChild(shuffledCards[i]);
             }
-            
-            for (var i = 6; i < shuffledCards.length/10*4; i++) {
+
+            for (var i = 6; i < shuffledCards.length / 10 * 4; i++) {
                 row2.appendChild(shuffledCards[i]);
             }
-            for (var i = 12; i < shuffledCards.length/10*6; i++) {
+            for (var i = 12; i < shuffledCards.length / 10 * 6; i++) {
                 row3.appendChild(shuffledCards[i]);
             }
-            for (var i = 18; i < shuffledCards.length/10*8; i++) {
+            for (var i = 18; i < shuffledCards.length / 10 * 8; i++) {
                 row4.appendChild(shuffledCards[i]);
             }
             for (var i = 24; i < shuffledCards.length; i++) {
                 row5.appendChild(shuffledCards[i]);
             }
         }
-        
+
 
     }
 
@@ -116,7 +117,10 @@ $(document).ready(function () {
         $(this).toggleClass("open");
         var playerPhotoId = event.target.getAttribute('data-player');
         $(this).css("background-image", playerPhotoId);
+        $(this).css("background-size", "100% 100%");
         $(this).toggleClass("disabled");
+
+
     }
 
     function shuffle(array) {
@@ -131,7 +135,29 @@ $(document).ready(function () {
         }
         return array;
     }
+    var openedCards = 0;
+    function countCards() {
 
+        openedCards += 1;
+        var max = 2;
+        if ($("#duosContainer").css("display") === "none") {
+            max = 3
+        }
+        if (openedCards >= max) {
+            checkCardsEuqal(max);
+        }
 
+    }
+
+    function checkCardsEuqal() {
+        var cardsSelected = $(".disabled");
+        var arr = [];
+        for (var i=0; i<cardsSelected.length;i++){
+            var x = cardsSelected.get(i).value;
+            arr.push(x);
+        }
+
+        console.log(arr);
+    }
 
 });

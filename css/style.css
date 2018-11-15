@@ -75,7 +75,7 @@
 
 .outerContainer{
     height: 680px;
-    background-color: cornflowerblue;
+    background-color: black;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -150,11 +150,7 @@
 	animation-duration: .75s;
 }
 
-.card-container.show {
-    background-image: url();
-	background-repeat: no-repeat;
-    background-size: cover;
-}
+
 
 .card-container.match {
 	cursor: default;
