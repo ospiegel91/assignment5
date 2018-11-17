@@ -15,28 +15,51 @@ $(document).ready(function () {
     // the above will play Amazing by Kanye West, because that sounds like basketball;
 
 
+    // launch the right grid according to user main menu seletions
+    $("#launchNewGame").on("click", runNewGame);
+    function runNewGame() {
+        var gameType = $("input:radio[name='gameType']:checked").val();
+        var difficultyFactor = parseFloat($("input:radio[name='difficulty']:checked").val());
+        if ($("input:radio[name='difficulty']:checked").length === 0) {
+            alert("you must select a difficulty");
+        } else {
+            if (gameType === "duos") {
+                duos();
+                countCards.bind(difficultyFactor);
+                displayCard.bind(difficultyFactor);
+                checkCardsEqual.bind(difficultyFactor);
+
+            } else if (gameType === "bigThrees") {
+                bigThrees();
+                countCards.bind(difficultyFactor);
+                displayCard.bind(difficultyFactor);
+                checkCardsEqual.bind(difficultyFactor);
+            } else {
+                alert("you haven't selected a game type");
+            }
+        }
+
+    }
+
+
+
+
 
     $(".outerContainer").css("display", "none");
     $("#bigThreesContainer").css("display", "none");
     $("#duosContainer").css("display", "none");
-
-    $(".duosStart").on("click", duos);
-    $(".ThreesStart").on("click", bigThrees);
-
 
 
     function duos() {
         $(".loading-page-outer-container").css("display", "none");
         $(".outerContainer").css("display", "flex");
         $("#duosContainer").css("display", "flex");
-
+        $(".instructions").text("Match 2 cards of All-Star Basketball players; belonging, and playing on the same super team");
 
 
         let allCards = $(".duos > .card-container");
         allCards.addClass("cardClosedImg");
         let allCardsArr = [...allCards];
-
-        
 
         const row1 = document.querySelector(".row1duo");
         const row2 = document.querySelector(".row2duo");
@@ -44,6 +67,8 @@ $(document).ready(function () {
         const row4 = document.querySelector(".row4duo");
         startGame();
         function startGame() {
+            checkRemainingCards();
+
             for (var i = 0; i < allCardsArr.length; i++) {
                 allCardsArr[i].addEventListener("click", displayCard);
                 allCardsArr[i].addEventListener("click", countCards);
@@ -64,6 +89,8 @@ $(document).ready(function () {
             }
         }
 
+        startTimer();
+
     };
 
 
@@ -72,13 +99,11 @@ $(document).ready(function () {
         $(".loading-page-outer-container").css("display", "none");
         $(".outerContainer").css("display", "flex");
         $("#bigThreesContainer").css("display", "flex");
-
+        $(".instructions").text("Match 3 cards of All-Star Basketball players; belonging, and playing on the same super team");
 
         let allCards = $(".bigThrees > .card-container");
         allCards.addClass("cardClosedImg");
         let allCardsArr = [...allCards];
-
-        
 
         const row1 = document.querySelector(".row1BT");
         const row2 = document.querySelector(".row2BT");
@@ -87,6 +112,8 @@ $(document).ready(function () {
         const row5 = document.querySelector(".row5BT");
         startGame();
         function startGame() {
+            checkRemainingCards();
+
             for (var i = 0; i < allCardsArr.length; i++) {
                 allCardsArr[i].addEventListener("click", displayCard);
                 allCardsArr[i].addEventListener("click", countCards);
@@ -111,7 +138,8 @@ $(document).ready(function () {
             }
         }
 
-
+        startTimer();
+        
     }
 
 
@@ -141,22 +169,22 @@ $(document).ready(function () {
     }
     var openedCards = 0;
     function countCards() {
-
         openedCards += 1;
         var max = 2;
         if ($("#duosContainer").css("display") === "none") {
             max = 3
         }
         if (openedCards === max) {
-            checkCardsEqual(max);
-            openedCards = 0; 
-            // turnOffOn();
+            checkCardsEqual();
+            openedCards = 0;
+            turnOnOff(max);
 
         }
 
     }
 
     function checkCardsEqual() {
+
         var cardsSelected = $(".disabled");
         var arr = [];
         for (var i = 0; i < cardsSelected.length; i++) {
@@ -166,43 +194,101 @@ $(document).ready(function () {
         const allEqual = arr => arr.every(v => v === arr[0])
 
         if (allEqual(arr)) {
+
             console.log(arr);
             cardsSelected.removeClass("disabled");
             cardsSelected.addClass("goldBorder");
             var outOfPlay = document.querySelectorAll(".goldBorder");
-            for(var i=0; i<outOfPlay.length; i++){
+            for (var i = 0; i < outOfPlay.length; i++) {
                 outOfPlay[i].removeEventListener("click", displayCard);
                 outOfPlay[i].removeEventListener("click", countCards);
             }
             var totalCards = 0;
             if ($("#duosContainer").css("display") === "none") {
                 totalCards = 30;
-            }else{
-                totalCards= 24;
+            } else {
+                totalCards = 24;
             }
-
-            if(outOfPlay.length===totalCards){
+            checkRemainingCards();
+            if (outOfPlay.length === totalCards) {
                 setTimeout(() => {
-                    $("#victory-modal").css("display","flex");
+                    $("#victory-modal").css("display", "flex");
                 }, 700);
 
             }
-            
+
 
         } else {
+            var difficulty = parseFloat($("input:radio[name='difficulty']:checked").val());
+            if (difficulty === 1) {
+                var x = 0.33;
+            } else if (difficulty === 0.33) {
+                var x = 1;
+            } else {
+                var x = 0.67;
+            }
             setTimeout(() => {
                 cardsSelected.removeClass("open");
                 cardsSelected.removeAttr("style");
                 cardsSelected.removeClass("disabled");
                 cardsSelected.addClass("cardClosedImg");
-            }, 2000);
-
-        }
-        
+            }, 2500 * x);  
+        };
         
 
     }
 
+    function turnOnOff(max) {
+        if (max === 3) {
+            var cards = document.querySelectorAll(".bigThrees > .card-container");
+        } else {
+            var cards = document.querySelectorAll(".duos > .card-container");
+        }
 
+        for (var i = 0; i < cards.length; i++) {
+            cards[i].removeEventListener("click", displayCard);
+            cards[i].removeEventListener("click", countCards);
+        }
+        var difficulty = parseFloat($("input:radio[name='difficulty']:checked").val());
+        setTimeout(() => {
+            for (var i = 0; i < cards.length; i++) {
+                cards[i].addEventListener("click", displayCard);
+                cards[i].addEventListener("click", countCards);
+            }
+            let outOfPlay = document.querySelectorAll(".goldBorder");
+            for (var i = 0; i < outOfPlay.length; i++) {
+                outOfPlay[i].removeEventListener("click", displayCard);
+                outOfPlay[i].removeEventListener("click", countCards);
+            }
+        }, 1200 * difficulty);
+    }
+
+    function startTimer() {
+        var minutesLabel = document.getElementById("minutes");
+        var secondsLabel = document.getElementById("seconds");
+        var totalSeconds = 0;
+        setInterval(setTime, 1000);
+
+        function setTime() {
+            ++totalSeconds;
+            secondsLabel.innerHTML = pad(totalSeconds % 60);
+            minutesLabel.innerHTML = pad(parseInt(totalSeconds / 60));
+        }
+
+        function pad(val) {
+            var valString = val + "";
+            if (valString.length < 2) {
+                return "0" + valString;
+            } else {
+                return valString;
+            }
+        }
+    }
+
+    function checkRemainingCards(){
+        let remainingCards = $(".cardClosedImg").length;
+        $("#cards-remaining").text(remainingCards);
+    }
+        
 
 });

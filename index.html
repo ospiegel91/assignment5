@@ -17,6 +17,7 @@
     <script src="./js/main.js"></script>
     <title>Assignment5</title>
     <link href="https://fonts.googleapis.com/css?family=Anton" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Schoolbell" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="./css/style.css">
 </head>
 
@@ -25,14 +26,19 @@
         <div class="loading-page-inner-container">
             <div class="menu">
                 <div class="inner-menu-container">
-                    <h2>NBA greatest <b>duos</b> <br>card memory game</h2>
-                    <p>match two player cards which belong to the same team</p>
-                    <button class="menuButton duosStart">Start a new duos game now!</button>
-                </div>
-                <div class="inner-menu-container">
-                    <h2>NBA greatest <b>big-threes</b><br>card memory game</h2>
-                    <p>match three player cards which belong to the same team</p>
-                    <button class="menuButton ThreesStart">Start a new big-threes game now!</button>
+                    <h2>NBA greatest duos card memory game</h2>
+                    <p>Select game type</p>
+                    <div class="input-container">
+                        <div class="inputPairing"><input id="option1" type="radio" value="duos" name="gameType"><label for="option1">Duos</label></div>
+                        <div class="inputPairing"><input id="option2" type="radio" value ="bigThrees" name="gameType"><label for="option2">Big Threes</label></div>
+                    </div>
+                    <p>Select difficulty</p>
+                    <div class="input-container">
+                        <div class="inputPairing"><input id="option4" value="0.33" type="radio" name="difficulty"><label for="option4">Amateur</label></div>
+                        <div class="inputPairing"><input id="option5" value="0.67" type="radio" name="difficulty"><label for="option5">Street Baller</label></div>
+                        <div class="inputPairing"><input id="option6" value="1" type="radio" name="difficulty"><label for="option6">Hometown Legend</label></div>
+                    </div>
+                    <button id="launchNewGame" class="menuButton">Launch New Game</button>
                 </div>
             </div>
         </div>
@@ -54,17 +60,19 @@
             </div>
             <div class="text">
                 <h1>NBA card memory game</h1>
-                <p>Instructions here... many words about how to play this complicated game</p>
+                <p class="instructions"></p>
             </div>
             <div class="logoContainerRight">
             </div>
         </div>
         <div class="score-box-container">
-            <div class="wrongGuessesContainer">
-                number of wrong guesses: 7
+            <div class="timerContainer">
+                <p>Your Time:</p>
+                <label id="minutes">00</label>:<label id="seconds">00</label>
             </div>
-            <div class="cards-remaining">
-                cards remainning: 30
+            <div class="cardsRemainingContainer">
+                <p>Cards remainning:</p>
+                <label id="cards-remaining"></label>
             </div>
         </div>
         <div id="bigThreesContainer" class="container-fluid innerContainer">
@@ -75,25 +83,33 @@
                 </option>
                 <option class="col-xs-4 col-md-2 card-container" data-player="url('./images/bulls/spippen.jpeg')" value="bulls">
                 </option>
-                <option class="col-xs-4 col-md-2 card-container" data-player="url('./images/cavaliers/kirving.jpeg')" value="cavs">
+                <option class="col-xs-4 col-md-2 card-container" data-player="url('./images/cavaliers/kirving.jpeg')"
+                    value="cavs">
                 </option>
-                <option class="col-xs-4 col-md-2 card-container" data-player="url('./images/cavaliers/klove.jpeg')" value="cavs">
+                <option class="col-xs-4 col-md-2 card-container" data-player="url('./images/cavaliers/klove.jpeg')"
+                    value="cavs">
                 </option>
-                <option class="col-xs-4 col-md-2 card-container" data-player="url('./images/cavaliers/ljames.jpeg')" value="cavs">
+                <option class="col-xs-4 col-md-2 card-container" data-player="url('./images/cavaliers/ljames.jpeg')"
+                    value="cavs">
                 </option>
             </div>
             <div class="row rowContainer bigThrees row2BT">
-                <option class="col-xs-4 col-md-2 card-container" data-player="url('./images/celtics/kgarnett.jpeg')" value="celtics1">
+                <option class="col-xs-4 col-md-2 card-container" data-player="url('./images/celtics/kgarnett.jpeg')"
+                    value="celtics1">
                 </option>
-                <option class="col-xs-4 col-md-2 card-container"  data-player="url('./images/celtics/ppierce.jpeg')" value="celtics1">
+                <option class="col-xs-4 col-md-2 card-container" data-player="url('./images/celtics/ppierce.jpeg')"
+                    value="celtics1">
                 </option>
-                <option class="col-xs-4 col-md-2 card-container" data-player="url('./images/celtics/rallen.jpeg')" value="celtics1">
+                <option class="col-xs-4 col-md-2 card-container" data-player="url('./images/celtics/rallen.jpeg')"
+                    value="celtics1">
                 </option>
                 <option class="col-xs-4 col-md-2 card-container" data-player="url('./images/celtics/lbird.jpeg')" value="celtics2">
                 </option>
-                <option class="col-xs-4 col-md-2 card-container" data-player="url('./images/celtics/kmchale.jpeg')" value="celtics2">
+                <option class="col-xs-4 col-md-2 card-container" data-player="url('./images/celtics/kmchale.jpeg')"
+                    value="celtics2">
                 </option>
-                <option class="col-xs-4 col-md-2 card-container" data-player="url('./images/celtics/rparish.jpeg')" value="celtics2">
+                <option class="col-xs-4 col-md-2 card-container" data-player="url('./images/celtics/rparish.jpeg')"
+                    value="celtics2">
                 </option>
             </div>
             <div class="row rowContainer bigThrees row3BT">
@@ -107,21 +123,26 @@
                 </option>
                 <option class="col-xs-4 col-md-2 card-container" data-player="url('./images/kings/mbibby.jpg')" value="kings">
                 </option>
-                <option class="col-xs-4 col-md-2 card-container" data-player="url('./images/kings/pstoakovic.jpeg')" value="kings">
+                <option class="col-xs-4 col-md-2 card-container" data-player="url('./images/kings/pstoakovic.jpeg')"
+                    value="kings">
                 </option>
             </div>
             <div class="row rowContainer bigThrees row4BT">
-                <option class="col-xs-4 col-md-2 card-container" data-player="url('./images/lakers/jworthy.jpeg')" value="lakers">
+                <option class="col-xs-4 col-md-2 card-container" data-player="url('./images/lakers/jworthy.jpeg')"
+                    value="lakers">
                 </option>
-                <option class="col-xs-4 col-md-2 card-container" data-player="url('./images/lakers/kabduljabar.jpg')" value="lakers">
+                <option class="col-xs-4 col-md-2 card-container" data-player="url('./images/lakers/kabduljabar.jpg')"
+                    value="lakers">
                 </option>
-                <option class="col-xs-4 col-md-2 card-container" data-player="url('./images/lakers/mjohnson.jpeg')" value="lakers">
+                <option class="col-xs-4 col-md-2 card-container" data-player="url('./images/lakers/mjohnson.jpeg')"
+                    value="lakers">
                 </option>
                 <option class="col-xs-4 col-md-2 card-container" data-player="url('./images/mavs/snash.jpeg')" value="mavs">
                 </option>
                 <option class="col-xs-4 col-md-2 card-container" data-player="url('./images/mavs/mfinley.jpeg')" value="mavs">
                 </option>
-                <option class="col-xs-4 col-md-2 card-container" data-player="url('./images/mavs/dnowitzki.jpeg')" value="mavs">
+                <option class="col-xs-4 col-md-2 card-container" data-player="url('./images/mavs/dnowitzki.jpeg')"
+                    value="mavs">
                 </option>
             </div>
             <div class="row rowContainer bigThrees row5BT">
@@ -131,11 +152,14 @@
                 </option>
                 <option class="col-xs-4 col-md-2 card-container" data-player="url('./images/spurs/tparker.jpeg')" value="spurs">
                 </option>
-                <option class="col-xs-4 col-md-2 card-container" data-player="url('./images/thunder/jharden.jpeg')" value="thunder">
+                <option class="col-xs-4 col-md-2 card-container" data-player="url('./images/thunder/jharden.jpeg')"
+                    value="thunder">
                 </option>
-                <option class="col-xs-4 col-md-2 card-container" data-player="url('./images/thunder/kdurant.jpeg')" value="thunder">
+                <option class="col-xs-4 col-md-2 card-container" data-player="url('./images/thunder/kdurant.jpeg')"
+                    value="thunder">
                 </option>
-                <option class="col-xs-4 col-md-2 card-container" data-player="url('./images/thunder/rwestbrook.jpg')" value="thunder">
+                <option class="col-xs-4 col-md-2 card-container" data-player="url('./images/thunder/rwestbrook.jpg')"
+                    value="thunder">
                 </option>
             </div>
         </div>
@@ -145,31 +169,38 @@
                 </option>
                 <option class="col-xs-4 col-md-2 card-container" data-player="url('./images/bulls/spippen.jpeg')" value="bulls">
                 </option>
-                <option class="col-xs-4 col-md-2 card-container" data-player="url('./images/celtics/brussell.jpg')" value="celtics3">
+                <option class="col-xs-4 col-md-2 card-container" data-player="url('./images/celtics/brussell.jpg')"
+                    value="celtics3">
                 </option>
                 <option class="col-xs-4 col-md-2 card-container" data-player="url('./images/celtics/bcousy.jpg')" value="celtics3">
                 </option>
-                <option class="col-xs-4 col-md-2 card-container" data-player="url('./images/clippers/bgriffin.jpeg')" value="clippers">
+                <option class="col-xs-4 col-md-2 card-container" data-player="url('./images/clippers/bgriffin.jpeg')"
+                    value="clippers">
                 </option>
                 <option class="col-xs-4 col-md-2 card-container" data-player="url('./images/clippers/cpaul.jpg')" value="clippers">
                 </option>
             </div>
             <div class="row rowContainer duos row2duo">
-                <option class="col-xs-4 col-md-2 card-container" data-player="url('./images/jazz/jstockton.jpeg')" value="jazz">
+                <option class="col-xs-4 col-md-2 card-container" data-player="url('./images/jazz/jstockton.jpeg')"
+                    value="jazz">
                 </option>
                 <option class="col-xs-4 col-md-2 card-container" data-player="url('./images/jazz/kmalone.jpeg')" value="jazz">
                 </option>
-                <option class="col-xs-4 col-md-2 card-container" data-player="url('./images/lakers/soneill.jpeg')" value="lakers4">
+                <option class="col-xs-4 col-md-2 card-container" data-player="url('./images/lakers/soneill.jpeg')"
+                    value="lakers4">
                 </option>
-                <option class="col-xs-4 col-md-2 card-container" data-player="url('./images/lakers/kbryant.jpeg')" value="lakers4">
+                <option class="col-xs-4 col-md-2 card-container" data-player="url('./images/lakers/kbryant.jpeg')"
+                    value="lakers4">
                 </option>
-                <option class="col-xs-4 col-md-2 card-container" data-player="url('./images/magic/phardaway.jpg')" value="magic">
+                <option class="col-xs-4 col-md-2 card-container" data-player="url('./images/magic/phardaway.jpg')"
+                    value="magic">
                 </option>
                 <option class="col-xs-4 col-md-2 card-container" data-player="url('./images/magic/soneill.jpeg')" value="magic">
                 </option>
             </div>
             <div class="row rowContainer duos row3duo">
-                <option class="col-xs-4 col-md-2 card-container" data-player="url('./images/mavs/dnowitzki.jpeg')" value="mavs">
+                <option class="col-xs-4 col-md-2 card-container" data-player="url('./images/mavs/dnowitzki.jpeg')"
+                    value="mavs">
                 </option>
                 <option class="col-xs-4 col-md-2 card-container" data-player="url('./images/mavs/jterry.jpg')" value="mavs">
                 </option>
@@ -177,9 +208,11 @@
                 </option>
                 <option class="col-xs-4 col-md-2 card-container" data-player="url('./images/nets/vcarter.jpg')" value="nets">
                 </option>
-                <option class="col-xs-4 col-md-2 card-container" data-player="url('./images/rockets/cdrexler.jpg')" value="rockets">
+                <option class="col-xs-4 col-md-2 card-container" data-player="url('./images/rockets/cdrexler.jpg')"
+                    value="rockets">
                 </option>
-                <option class="col-xs-4 col-md-2 card-container" data-player="url('./images/rockets/holajuwon.jpg')" value="rockets">
+                <option class="col-xs-4 col-md-2 card-container" data-player="url('./images/rockets/holajuwon.jpg')"
+                    value="rockets">
                 </option>
             </div>
             <div class="row rowContainer duos row4duo">
@@ -187,13 +220,16 @@
                 </option>
                 <option class="col-xs-4 col-md-2 card-container" data-player="url('./images/sixers/jerving.jpg')" value="sixers">
                 </option>
-                <option class="col-xs-4 col-md-2 card-container" data-player="url('./images/suns/astoudemire.jpg')" value="suns">
+                <option class="col-xs-4 col-md-2 card-container" data-player="url('./images/suns/astoudemire.jpg')"
+                    value="suns">
                 </option>
                 <option class="col-xs-4 col-md-2 card-container" data-player="url('./images/suns/snash.jpg')" value="suns">
                 </option>
-                <option class="col-xs-4 col-md-2 card-container" data-player="url('./images/warriors/kdurant.jpeg')" value="warriors">
+                <option class="col-xs-4 col-md-2 card-container" data-player="url('./images/warriors/kdurant.jpeg')"
+                    value="warriors">
                 </option>
-                <option class="col-xs-4 col-md-2 card-container" data-player="url('./images/warriors/scurry.jpg')" value="warriors">
+                <option class="col-xs-4 col-md-2 card-container" data-player="url('./images/warriors/scurry.jpg')"
+                    value="warriors">
                 </option>
             </div>
 
