@@ -36,7 +36,7 @@
                     <div class="input-container">
                         <div class="inputPairing"><input id="option4" value="0.33" type="radio" name="difficulty"><label for="option4">Amateur</label></div>
                         <div class="inputPairing"><input id="option5" value="0.67" type="radio" name="difficulty"><label for="option5">Street Baller</label></div>
-                        <div class="inputPairing"><input id="option6" value="1" type="radio" name="difficulty"><label for="option6">Hometown Legend</label></div>
+                        <div class="inputPairing"><input id="option6" value="0.8" type="radio" name="difficulty"><label for="option6">Hometown Legend</label></div>
                     </div>
                     <button id="launchNewGame" class="menuButton">Launch New Game</button>
                 </div>
@@ -46,9 +46,9 @@
     <div id="victory-modal" style="display: none">
         <div class="inner-modal-container">
             <h1>You Won!</h1>
-            <div id="gif"></div>
-            <p><span>Your time was:</span></p>
-            <button class="playAgain">Play again now!</button>
+            <div><img id="gif" src="https://media.giphy.com/media/cA4ApS5dOduG4/giphy.gif"></div>
+            <p><span>Your time was:&nbsp;</span><label id="winningTime"></label></p>
+            <a href="./index.html" class="playAgain">Play again now!</a>
         </div>
     </div>
     <div class="outerContainer">
@@ -69,6 +69,9 @@
             <div class="timerContainer">
                 <p>Your Time:</p>
                 <label id="minutes">00</label>:<label id="seconds">00</label>
+            </div>
+            <div>
+                <a href="./index.html" class="restart">New Game</a>
             </div>
             <div class="cardsRemainingContainer">
                 <p>Cards remainning:</p>

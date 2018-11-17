@@ -139,7 +139,7 @@ $(document).ready(function () {
         }
 
         startTimer();
-        
+
     }
 
 
@@ -195,7 +195,7 @@ $(document).ready(function () {
 
         if (allEqual(arr)) {
 
-            console.log(arr);
+            lockSound();
             cardsSelected.removeClass("disabled");
             cardsSelected.addClass("goldBorder");
             var outOfPlay = document.querySelectorAll(".goldBorder");
@@ -213,6 +213,7 @@ $(document).ready(function () {
             if (outOfPlay.length === totalCards) {
                 setTimeout(() => {
                     $("#victory-modal").css("display", "flex");
+                    $("#winningTime").text(startTimer());
                 }, 700);
 
             }
@@ -220,21 +221,21 @@ $(document).ready(function () {
 
         } else {
             var difficulty = parseFloat($("input:radio[name='difficulty']:checked").val());
-            if (difficulty === 1) {
-                var x = 0.33;
+            if (difficulty === 0.75) {
+                var x = 0.3;
             } else if (difficulty === 0.33) {
-                var x = 1;
+                var x = 0.66;
             } else {
-                var x = 0.67;
+                var x = 0.5;
             }
             setTimeout(() => {
                 cardsSelected.removeClass("open");
                 cardsSelected.removeAttr("style");
                 cardsSelected.removeClass("disabled");
                 cardsSelected.addClass("cardClosedImg");
-            }, 2500 * x);  
+            }, 1700 * x);
         };
-        
+
 
     }
 
@@ -260,13 +261,13 @@ $(document).ready(function () {
                 outOfPlay[i].removeEventListener("click", displayCard);
                 outOfPlay[i].removeEventListener("click", countCards);
             }
-        }, 1200 * difficulty);
+        }, 2600 * difficulty);
     }
-
+    var totalSeconds = 0;
     function startTimer() {
         var minutesLabel = document.getElementById("minutes");
         var secondsLabel = document.getElementById("seconds");
-        var totalSeconds = 0;
+
         setInterval(setTime, 1000);
 
         function setTime() {
@@ -283,12 +284,19 @@ $(document).ready(function () {
                 return valString;
             }
         }
+        return `${pad(totalSeconds % 60)}:${pad(parseInt(totalSeconds / 60))}`
     }
 
-    function checkRemainingCards(){
+    function checkRemainingCards() {
         let remainingCards = $(".cardClosedImg").length;
         $("#cards-remaining").text(remainingCards);
     }
-        
+
+    function lockSound() {
+        var audioElement = document.createElement('audio');
+        audioElement.setAttribute('src', './song/lock.mp3');
+
+       audioElement.play();
+    }
 
 });
