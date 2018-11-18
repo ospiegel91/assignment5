@@ -284,7 +284,7 @@ $(document).ready(function () {
                 return valString;
             }
         }
-        return `${pad(totalSeconds % 60)}:${pad(parseInt(totalSeconds / 60))}`
+        return `${pad(parseInt(totalSeconds / 60))}:${pad(totalSeconds % 60)}`
     }
 
     function checkRemainingCards() {
